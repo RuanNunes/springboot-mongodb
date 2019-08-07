@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import com.ruan.nunes.mongodb.DTO.AuthorDTO;
 import com.ruan.nunes.mongodb.domain.Post;
 import com.ruan.nunes.mongodb.domain.User;
 import com.ruan.nunes.mongodb.repository.PostRepository;
@@ -37,8 +38,8 @@ public class Instantiation implements CommandLineRunner{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setTimeZone(TimeZone.getTimeZone("BR"));
-		Post post1 = new Post(null, sdf.parse("21/03/2019"), "Partiu viage", "Vou viajar para londres abraços", maria);
-		Post post2 = new Post(null, sdf.parse("22/03/2019"), "Cheguei da viage", "cheguei muito bem em londres amigos", maria);
+		Post post1 = new Post(null, sdf.parse("21/03/2019"), "Partiu viage", "Vou viajar para londres abraços", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("22/03/2019"), "Cheguei da viage", "cheguei muito bem em londres amigos", new AuthorDTO(maria));
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 
