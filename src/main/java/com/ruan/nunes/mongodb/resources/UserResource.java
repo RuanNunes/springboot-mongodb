@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.ruan.nunes.mongodb.domain.Post;
 import com.ruan.nunes.mongodb.domain.User;
 import com.ruan.nunes.mongodb.services.UserService;
 
@@ -57,4 +58,13 @@ public class UserResource {
 		obj = userService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping
+	@RequestMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		User user = userService.finById(id);
+		return ResponseEntity.ok().body(user.getPosts());
+	}
+	
+	
 }
